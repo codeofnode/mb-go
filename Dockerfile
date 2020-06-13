@@ -9,4 +9,4 @@ RUN apt update && \
   chmod +x /entrypoint.sh && \
   sed -i -e 's|{{DOCKER_APP_PATH}}|'${APP_PATH}'|' go.mod
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["make"]
+CMD ["make", "dev"]

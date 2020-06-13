@@ -2,7 +2,7 @@
 set -e
 
 if [ "$1" = 'make' ]; then
-  exec make "$@"
+  exec "$@"
 fi
 
 exec "$@"

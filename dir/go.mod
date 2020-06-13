@@ -1,0 +1,3 @@
+module {{DOCKER_REPLACE_APP_PATH}}
+
+go 1.15

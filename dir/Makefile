@@ -1,14 +1,8 @@
 #!make
-
-# Dev
-.PHONY: dev
+.PHONY: dev fmt
 
 dev:
 	@bash scripts/watch.sh test
 
-# format
-.PHONY: fmt
-
 fmt:
 	@go fmt ./...
-#

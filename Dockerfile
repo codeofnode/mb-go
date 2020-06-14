@@ -7,6 +7,7 @@ WORKDIR /go/src/${APP_PATH}
 RUN apt update && \
   apt install -y inotify-tools && \
   chmod +x /entrypoint.sh && \
-  sed -i -e 's|{{DOCKER_APP_PATH}}|'${APP_PATH}'|' go.mod
+	find . -type f -name "*.*" -print0 | xargs -0 sed -i \
+		-e 's|{{DOCKER_APP_PATH}}|'${APP_PATH}'|g'
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["make", "dev"]

@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"{{DOCKER_APP_PATH}}/pkg/app"
+	"os"
+)
 
 func main() {
-	fmt.Println("hello world")
+	app.Init(os.Args)
 }

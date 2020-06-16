@@ -1,6 +1,6 @@
 #!make
 
-.PHONY: build build/image clean clone
+.PHONY: build build/image build/sh clean clone
 
 include .sample.env
 include .env
@@ -16,11 +16,19 @@ build/image:
 build:
 	@[ "$(DOCKER_IMAGE_RESULT)" = "" ] && make -s build/image || true
 
+build/sh: build/image
+	@docker run --name build-$(REPO_NAME) -ti \
+		$(BASE_IMAGE_TAG) bash; \
+		docker cp build-$(REPO_NAME):/go/src/$(APP_PATH) output/; \
+		sed -i -e 's|$(APP_PATH)|{{DOCKER_APP_PATH}}|g' output/master/*go*; \
+		mv output/master/go.* dir/; \
+		docker rm build-$(REPO_NAME)
+
 clean:
 	@docker rmi $(BASE_IMAGE_TAG) || true
 
 clone:
-	@rm -rf sandbox && cp -r repo sandbox && cp dir/main.go sandbox/ && cd sandbox && \
+	@rm -rf sandbox && cp -r repo sandbox && cd sandbox && \
 		find . -type f -name "*.*" -print0 | xargs -0 sed -i \
 			-e 's|{{MAKE_REPO_NAME}}|$(REPO_NAME)|g' \
 			-e 's|{{MAKE_APP_PATH}}|$(APP_PATH)|g' \

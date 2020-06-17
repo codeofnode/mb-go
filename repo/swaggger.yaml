@@ -1,0 +1,48 @@
+swagger: '2.0'
+info:
+  description: 'Description goes here'
+  version: '{{MAKE_APP_VERSION}}'
+  title: Title   
+  termsOfService: 'http://{{MAKE_REPO_DOMAIN}}/terms/'
+  contact:
+    email: 'apiteam@{{MAKE_REPO_DOMAIN}}'
+  license:    
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: '{{MAKE_REPO_DOMAIN}}'
+tags:
+  - name: health
+    description: Health of service
+    externalDocs:
+      description: Find out more
+      url: 'http://docs.{{MAKE_REPO_DOMAIN}}/service-health'
+schemes:
+  - https
+paths:
+  /healthy:
+    get:
+      tags:
+        - health
+      summary: Respond if healthy
+      description: Respond if healthy
+      operationId: isLive
+      responses:
+        '200':
+          description: Service healhty
+        default:
+          description: Service not healthy
+  /ready:
+    get:
+      tags: 
+        - health
+      summary: Respond if ready
+      description: Respond if ready
+      operationId: isReady
+      responses:    
+        '200':
+          description: Service ready
+        default:    
+          description: Service not ready
+externalDocs:
+  description: Find out more about
+  url: 'https://{{MAKE_REPO_DOMAIN}'

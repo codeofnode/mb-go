@@ -20,8 +20,8 @@ build/sh: build/image
 	@docker run --name build-$(REPO_NAME) -ti \
 		$(BASE_IMAGE_TAG) bash; \
 		docker cp build-$(REPO_NAME):/go/src/$(APP_PATH) output/; \
-		sed -i -e 's|$(APP_PATH)|{{DOCKER_APP_PATH}}|g' output/master/*go*; \
-		mv output/master/go.* dir/; \
+		sed -i -e 's|$(APP_PATH)|{{DOCKER_APP_PATH}}|g' output/$(REPO_NAME)/*go*; \
+		mv output/$(REPO_NAME)/go.* dir/; \
 		docker rm build-$(REPO_NAME)
 
 clean:

@@ -23,10 +23,13 @@ build:
 build/sh: build/image
 	@docker run --name build-$(REPO_NAME) -ti \
 		$(BASE_IMAGE_TAG) bash; \
-		docker cp build-$(REPO_NAME):/go/src/$(APP_PATH) output/; \
-		sed -i -e 's|$(APP_PATH)|{{DOCKER_APP_PATH}}|g' output/$(REPO_NAME)/*go*; \
-		mv output/$(REPO_NAME)/go.* dir/; \
-		docker rm build-$(REPO_NAME)
+	docker cp build-$(REPO_NAME):/go/src/$(APP_PATH) output/; cd output; \
+	find . -type f -name "*.*" -print0 | xargs -0 sed -i \
+		-e 's|$(REPO_DOMAIN)/$(REPO_OWNER)|{{DOCKER_REPO_DOMAIN}}/{{DOCKER_REPO_OWNER}}|g' \
+		-e 's|$(APP_PATH)|{{DOCKER_APP_PATH}}|g'; \
+	mv $(REPO_NAME) ../dir; \
+	mv godev ../; \
+	docker rm build-$(REPO_NAME)
 
 clean:
 	@docker rmi $(BASE_IMAGE_TAG) || true

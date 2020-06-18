@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strings"
 
+	"{{DOCKER_APP_PATH}}/pkg/handlers"
 	"github.com/gorilla/mux"
 )
 

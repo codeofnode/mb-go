@@ -6,7 +6,7 @@ import (
 
 func Init(args []string) string {
 	if args[1] == "gen" && args[2] == "routes" {
-		routegen.Start(args[4], args[6])
+		routegen.Init(args[4], args[6])
 	}
 	return args[0] + " starting ..."
 }

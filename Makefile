@@ -26,9 +26,9 @@ build/sh: build/image
 	docker cp build-$(REPO_NAME):/go/src/$(REPO_DOMAIN)/$(REPO_OWNER)/ output; cd output/$(REPO_OWNER); \
 	find . -type f -name "*.*" -print0 | xargs -0 sed -i \
 		-e 's|$(APP_PATH)|{{DOCKER_APP_PATH}}|g' \
-		-e 's|$(REPO_DOMAIN)/$(REPO_OWNER)/godev|{{DOCKER_APP_PATH}}|g'; \
-	mv $(REPO_NAME) dir; rmv() { [ -f $$1 ] && mv $$1 ../../$$1 || (for f in $$1/*; do [ -d $$f ] && rmv $$f; done) }; \
-	for md in $(REPO_NAME) godev; do rmv $$md; done; \
+		-e 's|$(REPO_DOMAIN)/$(REPO_OWNER)/godev|{{DOCKER_APP_PATH}}|g'; set -x; \
+	rm -rf dir; mv $(REPO_NAME) dir; rmv() { [ -f $$1 ] && mv $$1 ../../$$1 || (for f in $$1/*; do rmv $$f; done) }; \
+	for md in dir godev; do rmv $$md; done; \
 	rm -f ../../godev/main.go; \
 	docker rm build-$(REPO_NAME)
 

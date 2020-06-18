@@ -1,6 +1,9 @@
 #!make
 .PHONY: dev fmt test build
 
+build:
+	@/bin/godev gen routes --from swagger.yaml --to server/routes.go
+
 dev:
 	@bash scripts/watch.sh test
 

@@ -27,8 +27,9 @@ build/sh: build/image
 	find . -type f -name "*.*" -print0 | xargs -0 sed -i \
 		-e 's|$(APP_PATH)|{{DOCKER_APP_PATH}}|g' \
 		-e 's|$(REPO_DOMAIN)/$(REPO_OWNER)/godev|{{DOCKER_APP_PATH}}|g'; \
-	mv $(REPO_NAME)/* ../../dir/; mv $(REPO_NAME)/server/* ../../dir/server/; \
-	mv godev/* ../../godev/; rm -f ../../godev/main.go; \
+	mv $(REPO_NAME) dir; rmv() { [ -f $$1 ] && mv $$1 ../../$$1 || (for f in $$1/*; do [ -d $$f ] && rmv $$f; done) }; \
+	for md in $(REPO_NAME) godev; do rmv $$md; done; \
+	rm -f ../../godev/main.go; \
 	docker rm build-$(REPO_NAME)
 
 clean:

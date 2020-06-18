@@ -45,4 +45,4 @@ paths:
           description: Service not ready
 externalDocs:
   description: Find out more about
-  url: 'https://{{MAKE_REPO_DOMAIN}'
+  url: 'https://{{MAKE_REPO_DOMAIN}}'

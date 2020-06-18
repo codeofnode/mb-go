@@ -60,9 +60,9 @@ func Init(from string, to string) {
 	if err != nil {
 		panic(err)
 	}
-	writeToFile(fo, "var routes = Routes{")
+	writeToFile(fo, "\nvar routes = Routes{")
 	defer func() {
-		writeToFile(fo, "{")
+		writeToFile(fo, "}\n")
 		if err := fo.Close(); err != nil {
 			panic(err)
 		}

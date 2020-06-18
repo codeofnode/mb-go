@@ -33,7 +33,7 @@ build/sh: build/image
 	docker rm build-$(REPO_NAME)
 
 clean:
-	@docker rmi $(BASE_IMAGE_TAG) || true
+	@docker stop dev-$(REPO_NAME) || true; docker rm dev-$(REPO_NAME) || true; docker rmi $(BASE_IMAGE_TAG) || true
 
 clone:
 	@rm -rf sandbox && cp -r repo sandbox && cd sandbox && \

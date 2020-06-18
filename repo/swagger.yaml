@@ -25,7 +25,7 @@ paths:
         - health
       summary: Respond if healthy
       description: Respond if healthy
-      operationId: isLive
+      operationId: IsLive
       responses:
         '200':
           description: Service healhty
@@ -37,7 +37,7 @@ paths:
         - health
       summary: Respond if ready
       description: Respond if ready
-      operationId: isReady
+      operationId: IsReady
       responses:    
         '200':
           description: Service ready

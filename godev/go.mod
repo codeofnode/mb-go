@@ -1,4 +1,4 @@
-module {{DOCKER_REPO_DOMAIN}}/{{DOCKER_REPO_OWNER}}/godev
+module {{DOCKER_APP_PATH}}
 
 go 1.15
 

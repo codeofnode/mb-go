@@ -16,10 +16,7 @@ RUN apt update && \
 	cp main.go ../godev/ && \
 	cd ../godev && \
 	find . -type f -name "*.*" -print0 | xargs -0 sed -i \
-		-e 's|{{DOCKER_REPO_DOMAIN}}|'${REPO_DOMAIN}'|g' \
-		-e 's|{{DOCKER_APP_PATH}}|'${APP_PATH}'|g' \
-		-e 's|'${APP_PATH}'|'${REPO_DOMAIN}'/'${REPO_OWNER}'/godev|g' \
-		-e 's|{{DOCKER_REPO_OWNER}}|'${REPO_OWNER}'|g' && \
+		-e 's|{{DOCKER_APP_PATH}}|'${REPO_DOMAIN}'/'${REPO_OWNER}'/godev|g' && \
 	go mod download
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["make", "dev"]

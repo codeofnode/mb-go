@@ -29,7 +29,6 @@ build/sh: build/image
 		-e 's|$(REPO_DOMAIN)/$(REPO_OWNER)/godev|{{DOCKER_APP_PATH}}|g'; \
 	rm -rf dir; mv $(REPO_NAME) dir; rmv() { [ -f $$1 ] && mv $$1 ../../$$1 || (for f in $$1/*; do rmv $$f; done) }; \
 	for md in dir godev; do rmv $$md; done; \
-	rm -f ../../godev/main.go; \
 	docker rm build-$(REPO_NAME)
 
 clean:

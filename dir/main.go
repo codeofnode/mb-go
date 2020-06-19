@@ -1,7 +1,7 @@
 package main
 
 import (
-	"{{DOCKER_APP_PATH}}/server"
+	"{{DOCKER_APP_PATH}}/internal/server"
 	"strconv"
 	"os"
 )

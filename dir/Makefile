@@ -3,7 +3,7 @@
 
 
 build/rt:
-	@/bin/godev gen routes --from swagger.yaml --to server/routes.go
+	@if ! grep -q "Routes{" server/routes.go; then /bin/godev gen routes --from swagger.yaml --to server/routes.go; fi
 
 dev:
 	@bash scripts/watch.sh test

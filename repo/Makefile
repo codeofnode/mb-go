@@ -5,7 +5,6 @@
 include .sample.env
 -include .env
 
-MASTER_REPO := mb-go
 REPO_NAME := $(shell basename $$(pwd))
 BASE_IMAGE_TAG = $(REPO_REG)$(REPO_OWNER)/base-$(REPO_NAME):$(BASE_REPO_VERSION)
 IMAGE_TAG = $(REPO_REG)$(REPO_OWNER)/$(REPO_NAME):$(REPO_VERSION)

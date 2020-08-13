@@ -8,4 +8,4 @@ RUN mkdir /REPO_NAME
 
 USER nobody:nobody
 
-ENTRYPOINT ["${APP_EX}"]
+ENTRYPOINT ${APP_EX}

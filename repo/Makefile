@@ -23,7 +23,7 @@ build/base:
 build: build/base
 	@make -s dev EP="make build" && make -s build/image
  
-dev:
+dev: build/base
 	@docker run --name dev-$(REPO_NAME) -ti \
 		-v `pwd`/output:/go/src/$(APP_PATH)/output \
 		-v `pwd`/pkg:/go/src/$(APP_PATH)/pkg \

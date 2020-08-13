@@ -36,7 +36,8 @@ clean:
 	@docker stop dev-$(REPO_NAME) || true; docker rm dev-$(REPO_NAME) || true; docker rmi $(BASE_IMAGE_TAG) || true
 
 clone:
-	@rm -rf ../$(REPO_NAME) && cp -r repo ../$(REPO_NAME) && cd ../$(REPO_NAME) && \
+	@rm -rf ../$(REPO_NAME) && cp -r repo ../$(REPO_NAME) && \
+		cp .sample.env  ../$(REPO_NAME)/ && cd ../$(REPO_NAME) && \
 		find . -type f -name "*.*" -print0 | xargs -0 sed -i$(SED_SUFF) \
 			-e 's|{{MAKE_REPO_NAME}}|$(REPO_NAME)|g' \
 			-e 's|{{MAKE_REPO_DOMAIN}}|$(REPO_DOMAIN)|g' \

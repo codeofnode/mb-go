@@ -16,4 +16,4 @@ test: build/rt
 		go tool cover -html=output/cover.txt -o output/cover.html
 
 build: build/rt
-	@go build -o output/executable main.go
+	@cp Dockerfile output/; go build -o output/executable main.go

@@ -2,13 +2,9 @@
 
 # start development
 ```
-docker run --name dev-{{MAKE_REPO_NAME}} -ti \
-	-v `pwd`/output:/go/src/{{MAKE_APP_PATH}}/output \
-	-v `pwd`/pkg:/go/src/{{MAKE_APP_PATH}}/pkg \
-	-v `pwd`/configs:/go/src/{{MAKE_APP_PATH}}/configs \
-	{{MAKE_BASE_IMAGE_TAG}}
+make dev [EP=any_bin_or_command]
 ```
-> Add `bash` or any bin to start the container with different entrypoint
+> Add EP=bash or any bin to start the container with different entrypoint
 
 
 if container already exists

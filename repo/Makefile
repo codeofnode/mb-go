@@ -27,7 +27,7 @@ dev:
 	@docker run --name dev-$(REPO_NAME) -ti \
 		-v `pwd`/output:/go/src/$(APP_PATH)/output \
 		-v `pwd`/pkg:/go/src/$(APP_PATH)/pkg \
-		-v `pwd`/configs:/go/src/{{MAKE_APP_PATH}}/configs \
+		-v `pwd`/configs:/go/src/$(APP_PATH)/configs \
 		$(BASE_IMAGE_TAG) $(EP)
 
 build/image:

@@ -21,7 +21,7 @@ build/base:
 	@[ "$(DOCKER_IMAGE_RESULT)" = "" ] && make -s build/base/image || true
 
 build: build/base
-	@mkdir -p output && make -s dev EP="make build" && make -s build/image
+	@make -s dev EP="make build" && make -s build/image
  
 dev:
 	@docker run --name dev-$(REPO_NAME) -ti \

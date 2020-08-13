@@ -18,7 +18,7 @@ build/base/image:
 		cd $(MASTER_REPO) && git checkout $(REPO_NAME) && make build
  
 build/base:
-	@[ "$(DOCKER_IMAGE_RESULT)" = "" ] && make -s build/base || true
+	@[ "$(DOCKER_IMAGE_RESULT)" = "" ] && make -s build/base/image || true
 
 build: build/base
 	@mkdir -p output && make -s dev EP="make build" && make -s build/image
@@ -28,6 +28,9 @@ dev:
 		-v `pwd`/output:/go/src/$(APP_PATH)/output \
 		-v `pwd`/pkg:/go/src/$(APP_PATH)/pkg \
 		$(BASE_IMAGE_TAG) $(EP)
+
+build/image:
+	@cd output; docker build --build-arg REPO_NAME=$(REPO_NAME) . -t $(IMAGE_TAG)
 
 clean:
 	@docker rmi $(IMAGE_TAG) || true

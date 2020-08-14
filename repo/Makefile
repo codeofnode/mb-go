@@ -33,4 +33,4 @@ build/image:
 	@cd output; docker build --build-arg REPO_NAME=$(REPO_NAME) . -t $(IMAGE_TAG)
 
 clean:
-	@docker rmi $(IMAGE_TAG) || true
+	@docker stop dev-$(REPO_NAME) || true; docker rm dev-$(REPO_NAME) || true; docker rmi $(IMAGE_TAG) || true

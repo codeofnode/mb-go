@@ -1,12 +1,14 @@
 package main
 
 import (
+	"{{DOCKER_APP_PATH}}/pkg/app"
 	"{{DOCKER_APP_PATH}}/internal/server"
 	"strconv"
 	"os"
 )
 
 func main() {
+	app.Init(os.Args)
 	portStr, exists := os.LookupEnv("PORT")
 	if !exists {
 		portStr = "5823"
